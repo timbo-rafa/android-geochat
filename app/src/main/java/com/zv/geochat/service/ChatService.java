@@ -19,7 +19,10 @@ public class ChatService extends Service {
     public static final int CMD_LEAVE_CHAT = 20;
     public static final int CMD_SEND_MESSAGE = 30;
     public static final int CMD_RECEIVE_MESSAGE = 40;
+    public static final int CMD_CONNERR = 50;
+    public static final int CMD_SEND_ID = 60;
     public static final String KEY_MESSAGE_TEXT = "message_text";
+    public static final String KEY_ID = "id";
     public static final String KEY_USER_NAME = "user_name";
 
     private NotificationManager notificationMgr;
@@ -95,7 +98,12 @@ public class ChatService extends Service {
         } else if (command == CMD_RECEIVE_MESSAGE) {
             String testUser = "User2";
             String testMessage = "Simulated Message";
-            notificationDecorator.displaySimpleNotification("New message...: "+ testUser, testMessage);
+            notificationDecorator.displaySimpleNotification("New message...: " + testUser, testMessage);
+        } else if (command == CMD_CONNERR) {
+            notificationDecorator.displaySimpleNotification("Connection Error", "Connection Error: 78");
+        } else if (command == CMD_SEND_ID) {
+            int id = (int) data.get(KEY_ID);
+            notificationDecorator.displaySimpleNotification("Received Data", "Received Data: " + id);
         } else {
             Log.w(TAG, "Ignoring Unknown Command! id=" + command);
         }
