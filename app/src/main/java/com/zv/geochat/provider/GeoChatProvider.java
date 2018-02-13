@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.zv.geochat.model.ChatMessage;
 import com.zv.geochat.provider.GeoChatProviderMetadata.*;
 
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class GeoChatProvider extends ContentProvider {
         sGroupsProjectionMap.put(ChatMessageTableMetaData._ID, ChatMessageTableMetaData._ID);
         sGroupsProjectionMap.put(ChatMessageTableMetaData.USER_NAME, ChatMessageTableMetaData.USER_NAME);
         sGroupsProjectionMap.put(ChatMessageTableMetaData.MSG_BODY, ChatMessageTableMetaData.MSG_BODY);
+        sGroupsProjectionMap.put(ChatMessageTableMetaData.MSG_DATE, ChatMessageTableMetaData.MSG_DATE);
     }
 
 

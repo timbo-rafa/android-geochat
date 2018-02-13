@@ -16,6 +16,8 @@ import com.zv.geochat.model.ChatMessage;
 import com.zv.geochat.notification.NotificationDecorator;
 import com.zv.geochat.provider.ChatMessageStore;
 
+import java.util.Calendar;
+
 import static com.zv.geochat.R.id.userName;
 
 public class ChatService extends Service {

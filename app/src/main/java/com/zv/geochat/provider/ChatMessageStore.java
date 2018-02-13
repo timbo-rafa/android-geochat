@@ -76,6 +76,7 @@ public class ChatMessageStore {
 		int indexId = c.getColumnIndex(ChatMessageTableMetaData._ID);
 		int indexUserName = c.getColumnIndex(ChatMessageTableMetaData.USER_NAME);
 		int indexMsgBody = c.getColumnIndex(ChatMessageTableMetaData.MSG_BODY);
+		int indexDate = c.getColumnIndex(ChatMessageTableMetaData.MSG_DATE);
 
 		//walk through the rows based on indexes
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
@@ -83,6 +84,7 @@ public class ChatMessageStore {
 			chatMessage.setId(c.getString(indexId));
 			chatMessage.setUserName(c.getString(indexUserName));
 			chatMessage.setBody(c.getString(indexMsgBody));
+			chatMessage.setDate(c.getLong(indexDate));
 
 			list.add(chatMessage);
 
@@ -97,6 +99,7 @@ public class ChatMessageStore {
 		ContentValues cv = new ContentValues();
 		cv.put(ChatMessageTableMetaData.USER_NAME, chatMessage.getUserName());
 		cv.put(ChatMessageTableMetaData.MSG_BODY, chatMessage.getBody());
+		cv.put(ChatMessageTableMetaData.MSG_DATE, chatMessage.getDate());
 
 		Uri uri = ChatMessageTableMetaData.CONTENT_URI;
 		Log.v(TAG, "{db} insert uri: " + uri);
@@ -116,11 +119,14 @@ public class ChatMessageStore {
 		ContentValues cv = new ContentValues();
 		cv.put(GeoChatProviderMetadata.ChatMessageTableMetaData.USER_NAME, chatMessage.getUserName());
 		cv.put(GeoChatProviderMetadata.ChatMessageTableMetaData.MSG_BODY, chatMessage.getBody());
+		cv.put(GeoChatProviderMetadata.ChatMessageTableMetaData.MSG_DATE, chatMessage.getDate());
 
 		Uri uri = GeoChatProviderMetadata.ChatMessageTableMetaData.CONTENT_URI;
 		Log.v(TAG, "{db} insert uri: " + uri);
 		Uri insertedUri = contentResolver.insert(uri, cv);
 		Log.v(TAG, "{db} inserted uri: " + insertedUri);
+		//Log.v(TAG, "timbo " + cv.get(ChatMessageTableMetaData.MSG_DATE));
+
 	}
 
 	public void deleteById(String id) {

@@ -10,7 +10,7 @@ public class ChatMessage {
     private Date date;
 
     public ChatMessage() {
-        this.date = Calendar.getInstance().getTime();
+
     }
 
     public ChatMessage(String userName, String body) {
@@ -18,14 +18,6 @@ public class ChatMessage {
         this.body = body;
         this.date = Calendar.getInstance().getTime();
     }
-
-    public ChatMessage(String id, String userName, String body) {
-        this.id = id;
-        this.userName = userName;
-        this.body = body;
-        this.date = Calendar.getInstance().getTime();
-    }
-
 
     public String getUserName() {
         return userName;
@@ -39,10 +31,12 @@ public class ChatMessage {
         return id;
     }
 
-    public Date getDate() {return date;}
+    //public Date getDate() {return date;}
 
-    public void setDate(Date date) {
-        this.date = date;
+    public Long getDate() { return date.getTime();}
+
+    public void setDate(Long date) {
+        this.date = new Date(date);
     }
 
     public void setId(String id) {
