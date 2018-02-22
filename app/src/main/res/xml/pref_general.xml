@@ -22,4 +22,13 @@
         android:singleLine="true"
         android:title="@string/pref_title_server_uri" />
 
+    <EditTextPreference
+        android:defaultValue="@string/pref_default_timeout"
+        android:digits="0123456789"
+        android:inputType="number"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_timeout" />
+
 </PreferenceScreen>

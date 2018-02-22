@@ -17,6 +17,9 @@
     <string name="pref_title_server_uri">Server URI</string>
     <string name="pref_default_server_uri">http://chat.socket.io</string>
 
+    <string name="pref_default_timeout">1</string>
+    <string name="pref_title_timeout">Timeout(min)</string>
+
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
 

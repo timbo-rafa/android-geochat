@@ -152,6 +152,18 @@ public class ChatService extends Service {
         sendBroadcast(intent);
     }
 
+    private void sendBroadcastTimeout(String timeoutMessage) {
+        Log.d(TAG, "->(+)<- sending broadcast: BROADCAST_SESSION_TIMEOUT");
+        Intent intent = new Intent();
+        intent.setAction(Constants.BROADCAST_SESSION_TIMEOUT);
+
+        Bundle data = new Bundle();
+        data.putString(Constants.TIMEOUT_MESSAGE, timeoutMessage);
+        intent.putExtras(data);
+
+        sendBroadcast(intent);
+    }
+
     private void sendBroadcastUserLeft(String userName, int userCount) {
         Log.d(TAG, "->(+)<- sending broadcast: BROADCAST_USER_LEFT");
         Intent intent = new Intent();
