@@ -231,7 +231,7 @@ public class ChatService extends Service {
 
             public void onTick(long millisUntilFinished) {
                 currentSessionTime++;
-                //Log.d(TAG, "currentSessionTime:" + currentSessionTime);
+                Log.d(TAG, "currentSessionTime: " + currentSessionTime + "s");
             }
 
             public void onFinish() {
