@@ -191,6 +191,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // guidelines.
             bindPreferenceSummaryToValue(findPreference(Constants.PREF_KEY_USER_NAME));
             bindPreferenceSummaryToValue(findPreference(Constants.PREF_KEY_SERVER_URI));
+            String PREF_KEY_TIMEOUT = getResources().getString(R.string.pref_key_timeout);
+            bindPreferenceSummaryToValue(findPreference(PREF_KEY_TIMEOUT));
         }
 
         @Override

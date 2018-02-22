@@ -26,6 +26,7 @@
         android:defaultValue="@string/pref_default_timeout"
         android:digits="0123456789"
         android:inputType="number"
+        android:key="@string/pref_key_timeout"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"

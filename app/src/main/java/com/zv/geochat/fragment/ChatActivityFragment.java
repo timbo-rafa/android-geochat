@@ -60,12 +60,14 @@ public class ChatActivityFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         registerServiceStateChangeReceiver();
+        registerTimboReceiver();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         getActivity().unregisterReceiver(mServiceStateChangeReceiver);
+        getActivity().unregisterReceiver(timeoutReceiver);
     }
 
     private void sendMessage(String messageText){
@@ -125,6 +127,7 @@ public class ChatActivityFragment extends Fragment {
                 displayMessage(chatMessage);
             } else if (Constants.BROADCAST_USER_TYPING.equals(action)) {
                 // TODO
+
             } else {
                 Log.v(TAG, "do nothing for action: " + action);
             }
@@ -142,5 +145,29 @@ public class ChatActivityFragment extends Fragment {
         intentFilter.addAction(Constants.BROADCAST_USER_JOINED);
         intentFilter.addAction(Constants.BROADCAST_USER_LEFT);
         getActivity().registerReceiver(mServiceStateChangeReceiver, intentFilter);
+    }
+
+    //TIMBO
+
+    private final BroadcastReceiver timeoutReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Bundle data = intent.getExtras();
+            Log.d(TAG, "received broadcast message of timeout: " + action);
+
+            if (Constants.BROADCAST_SESSION_TIMEOUT.equals(action)) {
+                String timeoutMessage = data.getString(Constants.TIMEOUT_MESSAGE);
+                ChatMessage chatMessage = new ChatMessage("Timeout: ", timeoutMessage, true);
+                displayMessage(chatMessage);
+            }
+        }
+    };
+
+    private void registerTimboReceiver() {
+        Log.d(TAG, "registering timbo timeout receiver...");
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Constants.BROADCAST_SESSION_TIMEOUT);
+        getActivity().registerReceiver(timeoutReceiver, intentFilter);
     }
 }

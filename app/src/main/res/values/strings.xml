@@ -19,6 +19,7 @@
 
     <string name="pref_default_timeout">1</string>
     <string name="pref_title_timeout">Timeout(min)</string>
+    <string name="pref_key_timeout">key_timeout</string>
 
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
